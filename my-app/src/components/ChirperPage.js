@@ -6,7 +6,7 @@ import ChirperPatch from "./ChirperPatch";
 function ChirperPage() {
   // get everything to show up
   const [userLists, setUserlist] = useState({})
-  // const []
+  const [newUser, setNewUser] = useState([])
 
   useEffect(() => {
       fetch("http://localhost:9292/chirper_profile")
@@ -14,8 +14,11 @@ function ChirperPage() {
           .then((users) => {
               setUserlist(users)
           });
-        }, [])
-          
+        }, []);
+
+  function handleAddUser(newUser) {
+    setUserlist([...userLists, newUser]);
+  }
 };
 
 
