@@ -4,13 +4,20 @@ import ChirperForm from "./ChirperForm";
 import ChirperPatch from "./ChirperPatch";
 
 function ChirperPage() {
-    // get everything to show up
-    const [userLists, setUserlist] = useState({})
-    // const []
+  // get everything to show up
+  const [userLists, setUserlist] = useState({})
+  // const []
 
-    useEffect(() => {
-        fetch("http://localhost:9292/chirper_profile")
-    })
-}
+  useEffect(() => {
+      fetch("http://localhost:9292/chirper_profile")
+          .then((resp) => resp.json())
+          .then((users) => {
+              setUserlist(users)
+          });
+        }, [])
+          
+};
+
+
 
 export default ChirperPage;
