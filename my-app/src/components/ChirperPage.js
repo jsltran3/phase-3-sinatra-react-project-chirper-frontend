@@ -19,6 +19,18 @@ function ChirperPage() {
   function handleAddUser(newUser) {
     setUserlist([...userLists, newUser]);
   }
+
+  const guestToDisplay = () => {
+    
+  }
+
+  return (
+    <div>
+      <ol>
+
+      </ol>
+    </div>
+    )
 };
 
 
