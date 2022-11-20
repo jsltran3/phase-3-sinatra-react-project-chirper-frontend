@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChirperDelete from "./ChirperDelete";
 import ChirperForm from "./ChirperForm";
 import ChirperPatch from "./ChirperPatch";
+import ChirperUsers from "./ChirperUsers";
 
 function ChirperPage() {
   // get everything to show up
@@ -13,6 +14,7 @@ function ChirperPage() {
           .then((resp) => resp.json())
           .then((users) => {
               setUserlist(users)
+              console.log(users)
           });
         }, []);
 
@@ -20,12 +22,14 @@ function ChirperPage() {
     setUserlist([...userLists, newUser]);
   }
 
-  const guestToDisplay = () => {
-    
-  }
+  // const guestToDisplay = () => {
+  //   return userLists.map
+  // }
 
   return (
     <div>
+      <ChirperForm />
+      <h3>Chirper User Pages</h3>
       <ol>
 
       </ol>

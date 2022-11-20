@@ -1,5 +1,7 @@
-import './App.css';
 import React from 'react';
+import './index.css';
+import ChirperPage from './components/ChirperPage.js';
+import './App.css'
 
 function App() {
 
@@ -10,9 +12,9 @@ function App() {
         <p>
           Project 3: Chirper
         </p>
-        <a>
-          Chirper
-        </a>
+        <h3>
+          <ChirperPage />
+        </h3>
       </header>
     </div>
   );
