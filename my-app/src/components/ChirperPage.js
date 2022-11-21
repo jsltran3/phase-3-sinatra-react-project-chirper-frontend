@@ -22,17 +22,65 @@ function ChirperPage() {
     setUserlist([...userLists, newUser]);
   }
 
-  // const guestToDisplay = () => {
-  //   return userLists.map
-  // }
+  function handleRemoveUser(id) {
+    const newListings = listings.filter((listing) => listing.id !== id);
+    setListings(newListings);
+  }
+
+  // handleAddFood = (e) => {
+  //   e.preventDefault();
+
+  //   fetch("http://localhost:9292/foods", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       text: this.state.newFood,
+  //       meal: this.state.chooseMeal,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       this.setState({
+  //         foods: [...this.state.foods, data.food],
+  //         newFood: "",
+  //       });
+  //     });
+  // };
+
+  // handleDelete = (deleteFood) => {
+  //   fetch("http://localhost:9292/foods/" + deleteFood.id, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+
+  //   this.setState({
+  //     foods: this.state.foods.filter((food) => food !== deleteFood),
+  //   });
+  // };
+
+  const userToDisplay = () => {
+    return userLists.filter(user => {
+      return true 
+    })
+  }
 
   return (
     <div>
       <ChirperForm />
       <h3>Chirper User Pages</h3>
-      <ol>
-
-      </ol>
+      <ul>
+        {userToDisplay().map((user) => (
+          <ChirperUsers
+            key={user.id}
+            user={user}
+            onRemoveUser={handleRemoveUser}
+            />
+        ))}
+      </ul>
     </div>
     )
 };
