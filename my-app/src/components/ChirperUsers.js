@@ -7,7 +7,7 @@ import MsgChirps from "./MsgChirps";
 // 	onRemoveUser
 // }) {
 
-	function ChirperUsers({ user, chirps, onRemoveUser
+	function ChirperUsers({ user, chirps, id, onRemoveUser
 	}) {
 
     // useEffect(() => {
@@ -26,7 +26,13 @@ import MsgChirps from "./MsgChirps";
 	  }
 		// console.log(`"this is going to be" ${user.name[1].chirps}`)
 	
-	// console.log({ user.chirps })
+		// const theList = userLists.map((user) => (
+		// 	<ChirperUsers user={user} key={uuidv4()} />
+		//   ))
+
+
+	const chirpMsg = user.chirps.map((msg) => (
+		<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
 	
 
     return (
@@ -40,9 +46,7 @@ import MsgChirps from "./MsgChirps";
 					{/* {user.chirps */}
 				</h3>
 				<ul>
-					{user.chirps.map((tweet) =>
-						<li key={tweet.id}>{tweet.chirp_message}</li>
-					)}
+					{chirpMsg}
 				</ul>
 				<button onClick={handleDeleteClick}>Delete</button>
 			</div>
