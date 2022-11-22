@@ -16,10 +16,11 @@ function MsgChirps({ msg, id }) {
         .then((resp) => resp.json())
         // .then(() => console.log(id));
         .then(deletedChirp => handleDeleteChirp(deletedChirp)) 
+        .then(console.log(id))
       }
 
       const handleEditClick = () => {
-        fetch(`http://localhost:9292/chirp/${msg.id}`, {
+        fetch('http://localhost:9292/chirp/${msg.id}', {
           method: 'PATCH',
           headers: {
             'Accept': 'application/json',

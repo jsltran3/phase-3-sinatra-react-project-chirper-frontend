@@ -1,14 +1,7 @@
 import React, { useEffect } from "react";
 import MsgChirps from "./MsgChirps";
 
-
-// function ChirperUsers({ 
-// 	user: {id, name, chirp_message },
-// 	onRemoveUser
-// }) {
-
-	function ChirperUsers({ user, chirps, id, onRemoveUser
-	}) {
+	function ChirperUsers({ user, chirps, id, onRemoveUser}) {
 
     // useEffect(() => {
 	// 	fetch('http://localhost:9292/chirper_profile/:id')
@@ -18,17 +11,16 @@ import MsgChirps from "./MsgChirps";
 	// 		});
 	// }, []);
 
-	function handleDeleteClick(id) {
-		fetch('http://localhost:9292/chirper_profile/:id)', {
+	function handleDeleteUser(id) {
+		fetch('http://localhost:9292/chirper_profile/${user.id}', {
 		  method: "DELETE",
-		});
-		onRemoveUser(id);
+		})
+		.then(resp => resp.json())
+		// .then(deletedUser => onRemoveUser(id));
+		.then(console.log(id))
 	  }
-		// console.log(`"this is going to be" ${user.name[1].chirps}`)
-	
-		// const theList = userLists.map((user) => (
-		// 	<ChirperUsers user={user} key={uuidv4()} />
-		//   ))
+
+	  
 
 
 	const chirpMsg = user.chirps.map((msg) => (
@@ -48,7 +40,7 @@ import MsgChirps from "./MsgChirps";
 				<ul>
 					{chirpMsg}
 				</ul>
-				<button onClick={handleDeleteClick}>Delete</button>
+				<button onClick={handleDeleteUser}>Delet User</button>
 			</div>
 		</li>
 		</div>
