@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ChirperDelete from "./ChirperDelete";
 import ChirperForm from "./ChirperForm";
-import ChirperPatch from "./ChirperPatch";
 import ChirperUsers from "./ChirperUsers";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,7 +10,7 @@ function ChirperPage() {
   const [newUser, setNewUser] = useState([]);
 
   useEffect(() => {
-      fetch("http://localhost:9292/chirper_profile")
+      fetch('http://localhost:9292/chirper_profile')
           .then((resp) => resp.json())
           .then((users) => {
               setUserlists(users)
@@ -26,6 +25,7 @@ function ChirperPage() {
 
   function handleRemoveUser(id) {
     const list = userLists.filter((user) => user.id !== id);
+    setUserlists(list)
     console.log("this is showing something??");
   }
 

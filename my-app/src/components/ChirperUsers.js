@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MsgChirps from "./MsgChirps";
 
-	function ChirperUsers({ user, chirps, id, onRemoveUser}) {
+	function ChirperUsers({ user, chirps, onRemoveUser}) {
 
     // useEffect(() => {
 	// 	fetch('http://localhost:9292/chirper_profile/:id')
@@ -11,13 +11,23 @@ import MsgChirps from "./MsgChirps";
 	// 		});
 	// }, []);
 
-	function handleDeleteUser(id) {
-		fetch('http://localhost:9292/chirper_profile/${user.id}', {
+	// function handleRemoveUser(id) {
+	// 	const list = userLists.filter((user) => user.id !== id);
+	// 	console.log("this is showing something??");
+	//   }
+
+	//used wrong quotes for the fetch
+	//already called the object, just need to specifies it
+	//goes back to JS, parent function already has the propnj
+
+	function handleDeleteUser() {
+		fetch(`http://localhost:9292/chirper_profile/${user.id}`, {
 		  method: "DELETE",
 		})
 		.then(resp => resp.json())
-		// .then(deletedUser => onRemoveUser(id));
-		.then(console.log(id))
+		.then(deletedUser => onRemoveUser(user.id));
+		// .then(console.log(id))
+	
 	  }
 
 	  
@@ -40,7 +50,8 @@ import MsgChirps from "./MsgChirps";
 				<ul>
 					{chirpMsg}
 				</ul>
-				<button onClick={handleDeleteUser}>Delet User</button>
+				{/* whats happening is that its auto called */}
+				<button onClick={handleDeleteUser}>Delete User</button>
 			</div>
 		</li>
 		</div>
