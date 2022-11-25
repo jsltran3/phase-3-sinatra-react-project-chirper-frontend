@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MsgChirps from "./MsgChirps";
 
-	function ChirperUsers({ user, chirps, onRemoveUser}) {
+	function ChirperUsers({ user, chirps, handleRemoveUser}) {
 
     // useEffect(() => {
 	// 	fetch('http://localhost:9292/chirper_profile/:id')
@@ -18,14 +18,14 @@ import MsgChirps from "./MsgChirps";
 
 	//used wrong quotes for the fetch
 	//already called the object, just need to specifies it
-	//goes back to JS, parent function already has the propnj
+	//goes back to JS, parent function already has the propnj6
 
 	function handleDeleteUser() {
 		fetch(`http://localhost:9292/chirper_profile/${user.id}`, {
 		  method: "DELETE",
 		})
 		.then(resp => resp.json())
-		.then(deletedUser => onRemoveUser(user.id));
+		.then(deletedUser => handleRemoveUser(deletedUser.id));
 		// .then(console.log(id))
 	
 	  }
@@ -35,6 +35,11 @@ import MsgChirps from "./MsgChirps";
 
 	const chirpMsg = user.chirps.map((msg) => (
 		<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
+
+	// const chirpMsg = chirps.map((msg) => (
+	// 	<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
+
+	
 	
 
     return (

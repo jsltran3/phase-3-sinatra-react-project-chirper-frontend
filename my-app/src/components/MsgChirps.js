@@ -9,18 +9,18 @@ function MsgChirps({ msg, id }) {
 		setChirpsMsg(updatedMsgs);
     }
     
-    function handleDeleteClick() {
-        fetch('http://localhost:9292/chirper_profile/${msg.id}', {
-          method: "DELETE", 
-        })
-        .then((resp) => resp.json())
-        // .then(() => console.log(id));
-        .then(deletedChirp => handleDeleteChirp(deletedChirp)) 
-        .then(console.log(id))
-      }
+	function handleDeleteMsg() {
+		fetch(`http://localhost:9292/chirp/${msg.id}`, {
+		  method: "DELETE",
+		})
+		.then(resp => resp.json())
+		// .then(deletedMsg => handleDeleteChirp(msg.id));
+		.then(console.log(msg.id))
+	
+	  }
 
       const handleEditClick = () => {
-        fetch('http://localhost:9292/chirp/${msg.id}', {
+        fetch(`http://localhost:9292/chirp/${msg.id}`, {
           method: 'PATCH',
           headers: {
             'Accept': 'application/json',
@@ -34,16 +34,16 @@ function MsgChirps({ msg, id }) {
         .then(data => setChirpsMsg(data.chirp_message))
       }
 
-    
+    // console.log(msg.id)
 
     return (
         <div>
             <React.Fragment>
                 <li>{msg.chirp_message}</li>
-                <button onClick={handleDeleteClick}>Edit</button> 
-                <button onClick={handleDeleteClick}>Delete</button> 
+                <button onClick={handleEditClick}>Edit</button> 
+                <button onClick={handleDeleteMsg}>Delete Message</button>
             </React.Fragment>
-            <SubmitChirps />
+            <SubmitChirps msg={msg}/>
         </div>
     )
 }

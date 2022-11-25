@@ -1,6 +1,6 @@
 import React from "react";
 
-function SubmitChirps() {
+function SubmitChirps({ msg }) {
     //put submit tweet button here
 
     return (

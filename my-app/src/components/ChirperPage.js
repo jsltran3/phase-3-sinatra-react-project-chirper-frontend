@@ -89,11 +89,11 @@ function ChirperPage() {
             key={user.id}
             id={user.id}
             user={user}
-            onRemoveUser={handleRemoveUser}
+            handleRemoveUser={handleRemoveUser}
             />
         ))}
       </ul>
-      {theList}
+      {/* {theList} */}
     </div>
     )
 };
