@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MsgChirps from "./MsgChirps";
 
-	function ChirperUsers({ user, chirps, handleRemoveUser}) {
+	function ChirperUsers({ user, chirps, handleRemoveUser, userLists}) {
 
     // useEffect(() => {
 	// 	fetch('http://localhost:9292/chirper_profile/:id')
@@ -34,7 +34,13 @@ import MsgChirps from "./MsgChirps";
 
 
 	const chirpMsg = user.chirps.map((msg) => (
-		<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
+		<MsgChirps 
+			key={msg.id} 
+			id={msg.id} 
+			msg={msg}
+			userLists={userLists}
+		/>
+	))
 
 	// const chirpMsg = chirps.map((msg) => (
 	// 	<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))

@@ -34,14 +34,20 @@ function ChirperPage() {
 	}
 
 
-  const userToDisplay = () => {
-    return userLists.filter(user => {
-      return true 
-    })
-  }
+  // const userToDisplay = () => {
+  //   return userLists.filter(user => {
+  //     return true 
+  //   })
+  // }
 
-  const theList = userLists.map((user) => (
-    <ChirperUsers user={user} key={uuidv4()} />
+  const userToDisplay = userLists.map((user) => (
+    <ChirperUsers 
+      user={user} 
+      id={user.id}
+      handleRemoveUser={handleRemoveUser}
+      key={uuidv4()} 
+      userLists={userLists}
+    />
   ))
 
   return (
@@ -51,16 +57,16 @@ function ChirperPage() {
       <span>List of Chirper Profiles</span>
       <ChirperForm onAddUser={handleAddUser} />
       <ul>
-        {userToDisplay().map((user) => (
+        {/* {theList().map((user) => (
           <ChirperUsers
             key={user.id}
             id={user.id}
             user={user}
             handleRemoveUser={handleRemoveUser}
             />
-        ))}
+        ))} */}
       </ul>
-      {/* {theList} */}
+      {userToDisplay}
     </div>
     )
 };

@@ -1,23 +1,40 @@
 import React, { useState } from "react";
 import SubmitChirps from "./SubmitChirps";
 
-function MsgChirps({ msg, id }) {
+function MsgChirps({ msg, userLists }) {
     const [chirpsMsg, setChirpsMsg] = useState(msg.chirp_message);
 
-    function handleDeleteChirp(id) {
-      const updatedMsgs = chirpsMsg.filter((msg) => msg.id !== id);
+    // function handleDeleteChirp(id) {
+    //   const updatedMsgs = chirpsMsg.filter((msg) => msg.id !== id);
+    //   setChirpsMsg(updatedMsgs);
+    // }
+
+    const handleDeleteChirp = (id) => {
+      const updatedMsgs = chirpsMsg.filter(msg => msg.id !== id);
       setChirpsMsg(updatedMsgs);
     }
-    
-	function handleDeleteMsg() {
-		fetch(`http://localhost:9292/chirp/${msg.id}`, {
-		  method: "DELETE",
-		})
-		.then(resp => resp.json())
-		.then(deletedMsg => handleDeleteChirp(deletedMsg.id));
-		// .then(console.log(msg.id))
+
+    const handleMsgDelete = () => {
+      fetch(`http://localhost:9292/chirp/${msg.id}`, {
+        method: 'DELETE',
+      })
+      .then(r => r.json())
+      .then(deletedMsg => handleDeleteChirp(deletedMsg.id))
+    }
+
+    function handleAddMsg(newMsg) {
+      setChirpsMsg([...chirpsMsg, newMsg]);
+    }
+  
+	// function handleDeleteMsg() {
+	// 	fetch(`http://localhost:9292/chirp/${msg.id}`, {
+	// 	  method: "DELETE",
+	// 	})
+	// 	.then(resp => resp.json())
+	// 	.then(deletedMsg => handleDeleteChirp(deletedMsg.id));
+	// 	// .then(console.log(msg.id))
 	
-	  }
+	//   }
 
       const handleEditClick = () => {
         fetch(`http://localhost:9292/chirp/${msg.id}`, {
@@ -34,16 +51,16 @@ function MsgChirps({ msg, id }) {
         .then(data => setChirpsMsg(data.chirp_message))
       }
 
-    // console.log(msg.chirp_message)
+    console.log(msg.chirp_message, "where is htis?")
 
     return (
         <div>
             <React.Fragment>
                 <li>{msg.chirp_message}</li>
                 <button onClick={handleEditClick}>Edit</button> 
-                <button onClick={handleDeleteMsg}>Delete Message</button>
+                <button onClick={handleMsgDelete}>Delete Message</button>
             </React.Fragment>
-            <SubmitChirps msg={msg}/>
+            <SubmitChirps userLists={userLists} msg={msg} onAddMsg={handleAddMsg}/>
         </div>
     )
 }
