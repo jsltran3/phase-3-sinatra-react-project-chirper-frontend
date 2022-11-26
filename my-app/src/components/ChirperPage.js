@@ -33,39 +33,6 @@ function ChirperPage() {
 		setUserlists([...userLists, newUser]);
 	}
 
-  // handleAddUser = (e) => {
-  //   e.preventDefault();
-
-  //   fetch("/chirper_profile/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name: this.state.newUser,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       this.setState({
-  //         user: [...this.state.newUser, data.name],
-  //         user: "",
-  //       });
-  //     });
-  // };
-
-  // handleDelete = (deleteFood) => {
-  //   fetch("http://localhost:9292/foods/" + deleteFood.id, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-
-  //   this.setState({
-  //     foods: this.state.foods.filter((food) => food !== deleteFood),
-  //   });
-  // };
 
   const userToDisplay = () => {
     return userLists.filter(user => {

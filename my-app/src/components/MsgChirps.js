@@ -5,8 +5,8 @@ function MsgChirps({ msg, id }) {
     const [chirpsMsg, setChirpsMsg] = useState(msg.chirp_message);
 
     function handleDeleteChirp(id) {
-		const updatedMsgs = chirpsMsg.filter((msg) => msg.id !== id);
-		setChirpsMsg(updatedMsgs);
+      const updatedMsgs = chirpsMsg.filter((msg) => msg.id !== id);
+      setChirpsMsg(updatedMsgs);
     }
     
 	function handleDeleteMsg() {
@@ -14,8 +14,8 @@ function MsgChirps({ msg, id }) {
 		  method: "DELETE",
 		})
 		.then(resp => resp.json())
-		// .then(deletedMsg => handleDeleteChirp(msg.id));
-		.then(console.log(msg.id))
+		.then(deletedMsg => handleDeleteChirp(deletedMsg.id));
+		// .then(console.log(msg.id))
 	
 	  }
 
@@ -34,7 +34,7 @@ function MsgChirps({ msg, id }) {
         .then(data => setChirpsMsg(data.chirp_message))
       }
 
-    // console.log(msg.id)
+    // console.log(msg.chirp_message)
 
     return (
         <div>
