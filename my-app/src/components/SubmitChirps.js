@@ -30,12 +30,12 @@ function SubmitChirps({ msg, userLists, onAddMsg }) {
 			})
 			
 		}
-
+		console.log("where's my submit form??")
 
     return (
         <div>
           {/* <form onSubmit = {handleAddSubmit}>  */}
-					<form> 
+					<form onSubmit={handleMsgSubmit}>  
 					<label className="text-input" >
             <p>New Chirp</p> 
                 <input
@@ -43,7 +43,7 @@ function SubmitChirps({ msg, userLists, onAddMsg }) {
                     id="tweet"
                     name="tweet"
                     // value={formInput.name}
-                    onChange={handleMsgSubmit}
+                    onChange={handleChange}
                 />
                 </label>
                 <button className="submit-box" type="submit">Submit</button>

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import SubmitChirps from "./SubmitChirps";
 
-function MsgChirps({ msg, userLists }) {
-    const [chirpsMsg, setChirpsMsg] = useState(msg.chirp_message);
+
+      function MsgChirps({ msg, userList, submitMsg, setSubmitMsg, setChirpsMsg, chirpsMsg }) {
+    // const [chirpsMsg, setChirpsMsg] = useState(msg.chirp_message);
+  //   const [submitMsg, setSubmitMsg] = useState({
+  //     chirp_message: '',
+  //     chirper_profile_id: userLists
+  // })
 
     // function handleDeleteChirp(id) {
     //   const updatedMsgs = chirpsMsg.filter((msg) => msg.id !== id);
@@ -25,6 +30,10 @@ function MsgChirps({ msg, userLists }) {
     function handleAddMsg(newMsg) {
       setChirpsMsg([...chirpsMsg, newMsg]);
     }
+
+    const handleSubmitMsgChange = (event) => {
+      setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
+    };
   
 	// function handleDeleteMsg() {
 	// 	fetch(`http://localhost:9292/chirp/${msg.id}`, {
@@ -55,12 +64,14 @@ function MsgChirps({ msg, userLists }) {
 
     return (
         <div>
+          
             <React.Fragment>
                 <li>{msg.chirp_message}</li>
                 <button onClick={handleEditClick}>Edit</button> 
                 <button onClick={handleMsgDelete}>Delete Message</button>
             </React.Fragment>
-            <SubmitChirps userLists={userLists} msg={msg} onAddMsg={handleAddMsg}/>
+
+            {/* <SubmitChirps userLists={userLists} msg={msg} onAddMsg={handleAddMsg}/> */}
         </div>
     )
 }
