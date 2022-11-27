@@ -36,16 +36,17 @@ function SubmitChirps({ msg, userLists, onAddMsg }) {
         <div>
           {/* <form onSubmit = {handleAddSubmit}>  */}
 					<form onSubmit={handleMsgSubmit}>  
-					<label className="text-input" >
+					{/* <label className="text-input" > */}
             <p>New Chirp</p> 
                 <input
+										type="text"
                     className="tweet-box"
-                    id="tweet"
-                    name="tweet"
-                    // value={formInput.name}
+                    // id="tweet"
+                    // name="tweet"
+                    value={msg.chirp_message}
                     onChange={handleChange}
                 />
-                </label>
+                {/* </label> */}
                 <button className="submit-box" type="submit">Submit</button>
             </form>
         </div>

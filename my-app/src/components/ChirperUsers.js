@@ -1,24 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import MsgChirps from "./MsgChirps";
+import { v4 as uuidv4} from 'uuid'
+import SubmitChirps from "./SubmitChirps";
+
 
 	function ChirperUsers({ user, chirps, handleRemoveUser, userLists}) {
-
-    // useEffect(() => {
-	// 	fetch('http://localhost:9292/chirper_profile/:id')
-	// 		.then((resp) => resp.json())
-	// 		.then(() => { 
-	// 			console.log(email)
-	// 		});
-	// }, []);
-
-	// function handleRemoveUser(id) {
-	// 	const list = userLists.filter((user) => user.id !== id);
-	// 	console.log("this is showing something??");
-	//   }
-
-	//used wrong quotes for the fetch
-	//already called the object, just need to specifies it
-	//goes back to JS, parent function already has the propnj6
+		const [viewChirpList, setViewChirpList] = useState(false);
 
 	function handleDeleteUser() {
 		fetch(`http://localhost:9292/chirper_profile/${user.id}`, {
@@ -27,11 +14,11 @@ import MsgChirps from "./MsgChirps";
 		.then(resp => resp.json())
 		.then(deletedUser => handleRemoveUser(deletedUser.id));
 		// .then(console.log(id))
-	
 	  }
 
-	  
-
+	const handleViewToggle = () => {
+		setViewChirpList(!viewChirpList)
+	}
 
 	const chirpMsg = user.chirps.map((msg) => (
 		<MsgChirps 
@@ -39,13 +26,69 @@ import MsgChirps from "./MsgChirps";
 			id={msg.id} 
 			msg={msg}
 			userLists={userLists}
+			viewChirpList={viewChirpList}
 		/>
 	))
 
+	//show chirps
+	const showChirps = user.chirps.map(msg => msg.chirp_message)
+	
+	console.log(showChirps)
 	// const chirpMsg = chirps.map((msg) => (
 	// 	<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
 
-	
+	// ===========
+	const [chirpsMsg, setChirpsMsg] = useState(showChirps.chirp_message);
+	const [submitMsg, setSubmitMsg] = useState({
+		chirp_message: '',
+		chirper_profile_id: user
+})
+
+// const [submitMsg, setSubmitMsg] = useState('')
+
+	const handleDeleteChirp = (id) => {
+		const updatedMsgs = chirpsMsg.filter(showChirps => showChirps.id !== id);
+		setChirpsMsg(updatedMsgs);
+	}
+
+	const handleMsgDelete = () => {
+		fetch(`http://localhost:9292/chirp/${showChirps.id}`, {
+			method: 'DELETE',
+		})
+		.then(r => r.json())
+		.then(deletedMsg => handleDeleteChirp(deletedMsg.id))
+	}
+
+	function handleAddMsg(newMsg) {
+		setChirpsMsg([...chirpsMsg, newMsg]);
+	}
+
+	const handleMsgSubmit = (event) => {
+		event.preventDefault();
+		fetch('http://localhost:9292/chirp', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({submitMsg})
+		})
+		.then(resp => resp.json())
+		.then(message => {
+			handleAddMsg(message);
+			console.log(message, "eh?")
+		})
+	}
+
+	function handleAddMsg(newMsg) {
+		setChirpsMsg([...chirpsMsg, newMsg]);
+	}
+
+	const handleChange = (event) => {
+		setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
+};
+
+	// ===========
 	
 
     return (
@@ -53,16 +96,57 @@ import MsgChirps from "./MsgChirps";
 			
 		<li>
 			<div>
-				<span></span>
-				<h3>
-					{user.name}
-					{/* {user.chirps */}
-				</h3>
-				<ul>
+				<div className="user-area" key={uuidv4()}>
+				<div>
+				<table className='Chirp-users'>
+					<thead>
+						<tr>
+							<th>{user.name}</th>
+							<th>
+				
+								{/* <button className='Button1' onClick={handleViewToggle}>{viewChirpList ? 'Hide user' : 'View User'}</button> */}
+							</th>
+						</tr>
+						<thead>						
+							<th>Chirps</th>
+							<th>{showChirps}</th>
+					
+							</thead>
+
+					</thead>
+				</table>
+			</div>
+			</div>
+			</div>
+
+			<div>
+
 					{chirpMsg}
-				</ul>
+	
+				{/* <MsgChirps 
+					userLists={userLists}
+					viewChirpList={viewChirpList}
+				/> */}
+				{chirpMsg}
+				{/* {showChirps.chirp_message}
+				{showChirps.chirp_message} */}
 				{/* whats happening is that its auto called */}
 				<button onClick={handleDeleteUser}>Delete User</button>
+				<form onSubmit={handleMsgSubmit}>  
+					<label className="text-input" >
+            <p>New Chirp</p> 
+                <input
+										type="text"
+										placeholder="Chirp Msg"
+                    className="tweet-box"
+                    // id="tweet"
+                    // name="tweet"
+                    value={showChirps.chirp_message}
+                    onChange={handleChange}
+                />
+                </label>
+                <button className="submit-box" type="submit">Submit Msg</button>
+            </form>
 			</div>
 		</li>
 		</div>

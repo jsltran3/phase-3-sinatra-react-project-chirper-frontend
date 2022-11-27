@@ -8,47 +8,24 @@ function ChirperForm({ onAddUser }) {
 			setFormInput({...formInput,[event.target.name]: event.target.value});
 		};
 
-    // function handleAddSubmit(event) {
-    //     event.preventDefault();
-    //     // const addUser = ({name: formInput.name})
-				
-
-    //     fetch('http://localhost:9292/chirper_profile/', {
-    //         method: "POST", 
-    //         headers: {
-    //             Accept: "application/json",
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify( formInput )
-    //     })
-		// 			.then((resp) => resp.json())
-		// 			.then((newUser) => onAddUser(newUser))
-		// 			setFormInput({
-		// 				name: ''
-		// 			})
-        
-    // }
-
-		function handleAddSubmit(event) {
-			event.preventDefault();
-			// const addUser = ({name: formInput.name})
-			
-
-			fetch('http://localhost:9292/chirper_profile/', {
-					method: "POST", 
-					headers: {
-							Accept: "application/json",
-							"Content-Type": "application/json"
-					},
-					body: JSON.stringify( formInput )
-			})
-				.then((resp) => resp.json())
-				.then(user => {
-					onAddUser(user);
-					setFormInput({
-						name: ''
-					})
+	function handleAddSubmit(event) {
+		event.preventDefault();
+		
+		fetch('http://localhost:9292/chirper_profile/', {
+				method: "POST", 
+				headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json"
+				},
+				body: JSON.stringify( formInput )
+		})
+			.then((resp) => resp.json())
+			.then(user => {
+				onAddUser(user);
+				setFormInput({
+					name: ''
 				})
+			})
 	}
 
     return (
@@ -65,7 +42,7 @@ function ChirperForm({ onAddUser }) {
 							onChange={handleFormInputChange}
 						/>
 					</label>
-					<button className="submit-box" type="submit">Submit</button>
+					<button className="submit-box" type="submit">Submit User</button>
 					</form>
             {/* ={handleSubmit} */}
 
