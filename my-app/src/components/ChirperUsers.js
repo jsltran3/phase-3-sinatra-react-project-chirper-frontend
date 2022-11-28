@@ -65,11 +65,13 @@ import SubmitChirps from "./SubmitChirps";
 		console.log(newMsg)
 	}
 
-	
+	// submitMsg.chirp_message, = null
+	// submitMsg, = {"chirp_message"=>"", "chirper_profile_id"=>"", ""=>"asdf"}
+	//  showChirps = "asdf\\\"}\"]",
 	function handleMsgSubmit() {
 		// event.preventDefault();
 		const inputMsgDb = ({
-			"chirp_message": showChirps,
+			chirp_message: showChirps,
 			chirper_profile_id: user.id
 		})
 
@@ -154,6 +156,7 @@ import SubmitChirps from "./SubmitChirps";
 					placeholder="Chirp Msg"
                     className="tweet-box"
                     onChange={handleChange}
+					value={submitMsg.chirp_message}
                 />
 					</label>
 				   <br></br>

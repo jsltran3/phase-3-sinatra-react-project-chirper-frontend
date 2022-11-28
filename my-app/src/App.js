@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import ChirperPage from './components/ChirperPage.js';
+import ChirperForm from "./ChirperForm";
+import ChirperUsers from "./ChirperUsers";
+import { v4 as uuidv4 } from 'uuid';
+import Header from "./Header";
+
 import './App.css'
 
 function App() {
@@ -12,19 +17,18 @@ function App() {
         .then((users) => setUserlists(users));
       }, []);
 
-  // function handleAddUser(newUser) {
-  //   setUserlists([...userLists, newUser]);
-  // }
-
   const handleAddUser = (newUser) => {
     setUserlists(newUser)
   }
 
-  
+  const allUsers = userLists.map((users) => (
+    <ChirperPage userLists={userLists} key={uuidv4()} />
+  ))
+
 
   return (
     <div className="App">
-      <header className="App-header">
+      <Header />
         <p>
           Project 3: Chirper
         </p>
@@ -35,7 +39,7 @@ function App() {
             handleAddUser={handleAddUser}
           />
         </h3>
-      </header>
+        {allUsers}
     </div>
   );
 }
