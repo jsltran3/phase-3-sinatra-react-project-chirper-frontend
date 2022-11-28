@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Link to the front end:
+https://github.com/jsltran3?tab=repositories
+
 In the project directory, you can run:
 
 ### `npm start`
