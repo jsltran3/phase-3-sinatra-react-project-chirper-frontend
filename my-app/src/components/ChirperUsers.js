@@ -33,21 +33,18 @@ import SubmitChirps from "./SubmitChirps";
 	//show chirps
 	const showChirps = user.chirps.map(msg => msg.chirp_message)
 	const showChirpKey = user.chirps.map(msg => msg.chirper_profile_id)
-	// console.log(showChirps)
-	// const chirpMsg = chirps.map((msg) => (
-	// 	<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
 
 	// ===========
-	const [chirpsMsg, setChirpsMsg] = useState(showChirpKey);
-// 	const [submitMsg, setSubmitMsg] = useState({
-// 		chirp_message: '',
-// 		chirper_profile_id: user
-// })
+	// const [chirpsMsg, setChirpsMsg] = useState(showChirpKey);
+	const [chirpsMsg, setChirpsMsg] = useState('');
 
-const [submitMsg, setSubmitMsg] = useState('')
+	const [submitMsg, setSubmitMsg] = useState({
+		chirp_message: '',
+		chirper_profile_id: ''
+})
 
+// const [submitMsg, setSubmitMsg] = useState('')
 
-console.log(user.chirps.map(msg => msg.chirper_profile_id))
 // const [submitMsg, setSubmitMsg] = useState('')
 
 	const handleDeleteChirp = (id) => {
@@ -69,35 +66,43 @@ console.log(user.chirps.map(msg => msg.chirper_profile_id))
 	}
 
 	
-	const handleMsgSubmit = (event) => {
-		event.preventDefault();
+	function handleMsgSubmit() {
+		// event.preventDefault();
+		const inputMsgDb = ({
+			"chirp_message": showChirps,
+			chirper_profile_id: user.id
+		})
+
 		fetch('http://localhost:9292/chirp', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				chirp_message: user.chirp_message,
-				chirper_profile_id: user
+			// body: JSON.stringify({
+			// 	"chirp_message": 'submitMsg',
+			// 	"chirper_profile_id": user.id
 
-			}),
+			// }),
+			body: JSON.stringify(inputMsgDb),
 		})
 		.then(resp => resp.json())
 		.then(message => {
 			handleAddMsg(message);
-			setSubmitMsg({chirp_message: ''})
+			setSubmitMsg({
+				chirp_message: '', 
+				chirper_profile_id: ''
+			})
 			// console.log(message, "eh?")
 		})
 	}
 
-	// function handleAddMsg(newMsg) {
-	// 	setChirpsMsg([...chirpsMsg, newMsg]);
-	// }
-
 	const handleChange = (event) => {
-		setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
-};
+		setSubmitMsg({
+			...submitMsg, [
+			event.target.name]: event.target.value
+		})
+	};
 
 	// ===========
 	
@@ -118,11 +123,6 @@ console.log(user.chirps.map(msg => msg.chirper_profile_id))
 								{/* <button className='Button1' onClick={handleViewToggle}>{viewChirpList ? 'Hide user' : 'View User'}</button> */}
 							</th>
 						</tr>
-
-				
-		
-					
-
 					</thead>
 								 									
 							<th>Chirps</th>
@@ -146,18 +146,17 @@ console.log(user.chirps.map(msg => msg.chirper_profile_id))
 				{/* whats happening is that its auto called */}
 				<button onClick={handleDeleteUser}>Delete User</button>
 				<form onSubmit={handleMsgSubmit}>  
+					
+            		<p>New Chirp</p> 
 					<label className="text-input" >
-            <p>New Chirp</p> 
-                <input
-										type="text"
-										placeholder="Chirp Msg"
+               		 <input
+					type="text"
+					placeholder="Chirp Msg"
                     className="tweet-box"
-                    // id="tweet"
-                    // name="tweet"
-                    value={submitMsg.chirp_message}
                     onChange={handleChange}
                 />
-                </label>
+					</label>
+				   <br></br>
                 <button className="submit-box" type="submit">Submit Msg</button>
             </form>
 			</div>
