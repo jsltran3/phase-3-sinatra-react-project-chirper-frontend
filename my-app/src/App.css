@@ -1,12 +1,12 @@
 .Header {
   text-align: center;
-  background-color: #282c34;
-  color: #e6e6e6;
+  background-color: #4ec4a5;
+  color: #4e3333;
   font-size: 30px;
 }
 
 .Background-main {
-  background-color: #e6e6e6;
+  background-color: #dbb6b6;
 }
 
 h2 {
@@ -55,14 +55,14 @@ table {
   padding-left: 10px;
   padding-right: 10px;
   width: 60%;
-  border: #61dafb;
+  border: #ad52b7;
   text-align: center;
   margin: auto;
   width: inherit;
 }
 
 .User-header {
-  background-color: #282c34;
+  background-color: #273e6c;
   color: #61dafb;
   margin: auto;
   font-size: 30px;
@@ -150,7 +150,7 @@ tr:nth-child(even) {
 }
 
 .Background {
-  background-color: #61dafb;
+  background-color: #f3eab7;
   padding-bottom: 10px;
 }
 
