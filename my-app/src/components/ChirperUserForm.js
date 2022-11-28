@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function StudentForm ({handleStudSubmit}){
+function ChirperUserForm ({handleStudSubmit}){
 	const  [formInput, setFormInput] = useState({name: ''});
 
   
