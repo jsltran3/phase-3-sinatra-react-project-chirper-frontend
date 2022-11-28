@@ -4,7 +4,7 @@ import MsgList from "./MsgList";
 
 function ChirperPage ({users, mainChirps, id}){
 
-  console.log(users)
+  // console.log(users)
 
   
   return(

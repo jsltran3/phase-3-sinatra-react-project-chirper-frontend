@@ -6,6 +6,9 @@ import MsgChirps from "./MsgChirps";
 function MsgList({ users, viewChirpList, id }) {
 	const [chirpsMsg, setChirpsMsg] = useState(users.chirps);
 
+  console.log(users.chirps)
+
+
   const onDeleteMsg = (id) => {
 		const updatedMsgs = chirpsMsg.filter(showChirps => showChirps.id !== id);
 		setChirpsMsg(updatedMsgs);
@@ -14,7 +17,6 @@ function MsgList({ users, viewChirpList, id }) {
   function handleAddMsg(newMsg) {
     setChirpsMsg([...chirpsMsg, newMsg]);
   }
-  console.log(id, "i'm on the msglist")
   // console.log(userLists)
   // const showAllChirps = chirpsMsg.chirps.map(msgs => msgs.chirp_messages)
 
@@ -38,7 +40,9 @@ function MsgList({ users, viewChirpList, id }) {
 					 </tr>
 				 </thead>
 				 <tbody>
-					 {/* {chirpsMsg.map((msg) => (<MsgChirps key={id} chirpMsg={chirpsMsg} onDeleteMsg={onDeleteMsg}/>))} */}
+					 {chirpsMsg.map((msg) => (<MsgChirps msg={msg} onDeleteMsg={onDeleteMsg}/>))}
+           {/* {chirpsMsg.map((msg) => console.log(msg))} */}
+
 				 </tbody>
 				</table>
 		</div> 

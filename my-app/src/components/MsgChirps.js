@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 
-function MsgChirps({ chirpsMsg, onDeleteMsg }) {
-  const [isLike, setIsLike] = useState(chirpsMsg.Like)
-
+function MsgChirps({ msg, onDeleteMsg }) {
+  const [isLike, setIsLike] = useState(msg.Like)
+  console.log(msg, "i'm in msg chirps")
     const handleMsgDelete = () => {
-      fetch(`http://localhost:9292/chirp/${chirpsMsg.id}`, {
+      fetch(`http://localhost:9292/chirp/${msg.id}`, {
         method: 'DELETE',
       })
       .then(r => r.json())
@@ -14,7 +14,7 @@ function MsgChirps({ chirpsMsg, onDeleteMsg }) {
 
     //have to migrate and seed 
     const handleEditClick = () => {
-      fetch(`http://localhost:9292/chirp/${chirpsMsg.id}`, {
+      fetch(`http://localhost:9292/chirp/${msg.id}`, {
         method: 'PATCH',
         headers: {
           'Accept': 'application/json',
@@ -30,12 +30,12 @@ function MsgChirps({ chirpsMsg, onDeleteMsg }) {
     return(
     
       <tr>
-        <td>{chirpsMsg.chirp_message}</td>
+        <td>{msg.chirp_message}</td>
         <td>
           <button className={isLike ? "Button2" : "Button3"} onClick={handleEditClick}>{isLike ? "Yay" : "Nay"}</button>
         </td>
         <td>
-          <button className='Delete-button' onClick={handleMsgDelete} id={chirpsMsg.id}>X</button>
+          <button className='Delete-button' onClick={handleMsgDelete} id={msg.id}>X</button>
         </td>
        </tr>
   )
