@@ -19,6 +19,7 @@ function App() {
   //   setUserlists(user)
   // }
 
+    console.log(userLists)
 
 
   const handleUserSubmit = (user) => {
@@ -28,10 +29,10 @@ function App() {
   
 
   const showUsers = userLists.map((users) => (
-    <ChirperPage userLists={userLists} name={users.name} id={users.id} />
+    // console.log(users.chirps)
+    <ChirperPage users={users} />
   ))
 
-    // console.log(userLists)
   return (
     <div>
       <Header />

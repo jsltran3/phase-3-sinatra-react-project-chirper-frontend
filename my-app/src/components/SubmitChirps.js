@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
-function SubmitChirps ({userListsId , handleAddMsg}){
+function SubmitChirps ({userListsId, userLists, id, handleAddMsg}){
   const [submitMsg, setSubmitMsg] = useState({
     chirp_message: '',
-    chirper_profile_id: userListsId,
+    chirper_profile_id: id,
     Like: false,
   })
- 
+	
+
   const handleChange = (event) => {
+		console.log(event.target.value)
     setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
 };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+		console.log(submitMsg)
     fetch('http://localhost:9292/chirp', {
       method: 'POST',
       headers: {
@@ -26,8 +29,8 @@ function SubmitChirps ({userListsId , handleAddMsg}){
     .then(chirp => {
       handleAddMsg(chirp);
       setSubmitMsg({
-        chirp_message: ''
-        // like: false
+        chirper_message: '',
+        Like: false
       })
     })
     
@@ -36,7 +39,7 @@ function SubmitChirps ({userListsId , handleAddMsg}){
   return(
     <div>
         <form className='Form-submission' onSubmit={handleSubmit}>
-          <input type="text" placeholder="Chirp!" name="name" onChange={handleChange} required/>
+          <input type="text" placeholder="Chirp!" name="chirp_message" onChange={handleChange} required/>
           <button className='Form-button'>Chirp!</button>
         </form>
     </div>

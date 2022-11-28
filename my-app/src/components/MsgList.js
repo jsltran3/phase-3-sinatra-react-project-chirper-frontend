@@ -3,8 +3,8 @@ import { v4 as uuidv4} from 'uuid'
 import SubmitChirps from "./SubmitChirps";
 import MsgChirps from "./MsgChirps";
 
-function MsgList({ userLists, viewChirpList }) {
-	const [chirpsMsg, setChirpsMsg] = useState(userLists.chirps);
+function MsgList({ users, viewChirpList, id }) {
+	const [chirpsMsg, setChirpsMsg] = useState(users.chirps);
 
   const onDeleteMsg = (id) => {
 		const updatedMsgs = chirpsMsg.filter(showChirps => showChirps.id !== id);
@@ -14,17 +14,19 @@ function MsgList({ userLists, viewChirpList }) {
   function handleAddMsg(newMsg) {
     setChirpsMsg([...chirpsMsg, newMsg]);
   }
-
-  console.log(userLists.id)
+  console.log(id, "i'm on the msglist")
+  // console.log(userLists)
   // const showAllChirps = chirpsMsg.chirps.map(msgs => msgs.chirp_messages)
 
   // console.log(showAllChirps)
-  // console.log(userLists)
+  // const showAllId = 
 		return(
 			<div>
 				<SubmitChirps 
-          userListsId={userLists.id} 
-          handleAddMsg={handleAddMsg}/>
+          userLists={users}
+          handleAddMsg={handleAddMsg}
+          id={id}
+        />
 				<div className='Background'>
 			<h3>Chirps Msgs:</h3>
 				<table>
@@ -36,7 +38,7 @@ function MsgList({ userLists, viewChirpList }) {
 					 </tr>
 				 </thead>
 				 <tbody>
-					 {/* {chirpsMsg.map((msg) => (<MsgChirps key={} chirpMsg={chirpsMsg} onDeleteMsg={onDeleteMsg}/>))} */}
+					 {/* {chirpsMsg.map((msg) => (<MsgChirps key={id} chirpMsg={chirpsMsg} onDeleteMsg={onDeleteMsg}/>))} */}
 				 </tbody>
 				</table>
 		</div> 

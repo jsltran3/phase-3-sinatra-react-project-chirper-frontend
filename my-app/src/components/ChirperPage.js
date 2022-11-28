@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import MsgList from "./MsgList";
 
 
-function ChirperPage ({userLists, name, id}){
+function ChirperPage ({users, mainChirps, id}){
 
+  console.log(users)
 
   
   return(
@@ -13,7 +14,7 @@ function ChirperPage ({userLists, name, id}){
           <table className='Table, User-header'>
            <thead>
             <tr>
-              <th>{name}</th>
+              <th>{users.name}</th>
               <th>
                 {/* <button className='Button1' onClick={handleViewToggle}>{viewChirpList ? 'Hide Chirps' : 'Show Chirps'}</button> */}
               </th>
@@ -21,7 +22,7 @@ function ChirperPage ({userLists, name, id}){
            </thead>
           </table>
         </div>
-        <MsgList userLists={userLists} />
+        <MsgList users={users} id={id} />
         </div>
     </div>
   )

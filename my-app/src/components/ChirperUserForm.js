@@ -24,7 +24,7 @@ function ChirperUserForm ({ handleUserSubmit }){
       setNewUser({
         name: ''
       })
-			console.log(user)
+			// console.log(user)
     })
     
   }
