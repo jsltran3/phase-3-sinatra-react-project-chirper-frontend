@@ -7,6 +7,7 @@ import MsgList from "./MsgList";
 
 function MsgChirps({ chirpMsg, handleRemoveUser }) {
     // const [chirpsMsg, setChirpsMsg] = useState(msg.chirp_message);
+  const [isLike, setIsLike] = useState(Chirp.donation_received)
 
 
 
@@ -23,24 +24,37 @@ function MsgChirps({ chirpMsg, handleRemoveUser }) {
       .then(deletedMsg => handleDeleteChirp(deletedMsg.id))
     }
 
-
-
-
-      const handleEditClick = () => {
-        fetch(`http://localhost:9292/chirp/${msg.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            "Tweet": !chirpsMsg
-          })
+    //have to migrate and seed 
+    const handleEditClick = () => {
+      fetch(`http://localhost:9292/chirp/${msg.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "Like": !isLike
         })
-        .then(resp => resp.json())
-        .then(data => setChirpsMsg(data.chirp_message))
-      }
-
+      })
+      .then(resp => resp.json())
+      .then(data => setIsLike(data.Like))
+    }
+    return(
+    
+      <tr>
+        <td>{donor.first_name} {donor.last_name}</td>
+        <td>${donor.donation}</td>
+        <td>
+          <button className={isDonate ? "Button2" : "Button3"} onClick={handleClick}>{isDonate ? "Yes" : "No"}</button>
+        </td>
+        <td>
+          <button className='Delete-button' onClick={handleDelete} id={donor.id}>X</button>
+        </td>
+       </tr>
+  )
+}
+  
+export default MsgChirps;
 
     if(viewChirpList === true){
     return (
@@ -61,5 +75,3 @@ function MsgChirps({ chirpMsg, handleRemoveUser }) {
     }
 
 }
-
-export default MsgChirps;
