@@ -1,5 +1,157 @@
-.App {
+.Header {
   text-align: center;
+  background-color: #282c34;
+  color: #e6e6e6;
+  font-size: 30px;
+}
+
+.Background-main {
+  background-color: #e6e6e6;
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.Form {
+  padding-top: 0px;
+  padding-bottom: 60px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.Form-donate {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  text-align: center;
+  font-size: 16px;
+  background-color: #61dafb;
+}
+
+input {
+  padding: 8px 20px;
+  margin: 8px 7px;
+  font-size: 16px;
+}
+
+input:focus {
+  background-color: #61dafb;
+}
+
+.Form-button {
+  background-color: #282c34; /* Green */
+  border: white;
+  color: #61dafb;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+table {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 60%;
+  border: #61dafb;
+  text-align: center;
+  margin: auto;
+  width: inherit;
+}
+
+.Student-header {
+  background-color: #282c34;
+  color: #61dafb;
+  margin: auto;
+  font-size: 30px;
+  text-align: center;
+}
+
+.Student-pad {
+  background-color: white;
+  padding: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+th {
+  height: 12px;
+  width: 1%;
+  padding-bottom: 10px;
+}
+
+td {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 20px;
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #a7c3ca;
+}
+
+.Button1 {
+  background-color: #61dafb; /* Green */
+  border: white;
+  color: #282c34;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.Button2 {
+  background-color: #282c34; 
+  border: white;
+  color: #61dafb;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.Button3 {
+  background-color: #282c34; 
+  border: white;
+  color: rgba(215, 8, 8, 0.883);
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.Delete-button {
+  background-color: rgba(215, 8, 8, 0.883); 
+  border: white;
+  color: #282c34;
+  padding: 5px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.Background {
+  background-color: #61dafb;
+  padding-bottom: 10px;
 }
 
 .App-logo {
@@ -19,7 +171,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
