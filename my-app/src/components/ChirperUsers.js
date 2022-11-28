@@ -1,24 +1,67 @@
 import React, { useState } from "react";
-import MsgChirps from "./MsgChirps";
 import { v4 as uuidv4} from 'uuid'
 import SubmitChirps from "./SubmitChirps";
+import MsgChirps from "./MsgChirps";
+
+function ChirperUsers({ userLists, viewChirpList }) {
+	// const [newUser, setNewUser] = useState([]);
+	const [chirpsMsg, setChirpsMsg] = useState(userLists.chirps);
+
+	// const [donors, setDonors] = useState(student.donors);
 
 
-	function ChirperUsers({ user, chirps, handleRemoveUser, userLists}) {
-		const [viewChirpList, setViewChirpList] = useState(false);
+  function handleRemoveUser(id) {
+    const list = userLists.filter((user) => user.id !== id);
+    setUserlists(list)
+  }
+
+	function handleAddMsg(newMsg) {
+		setChirpsMsg([...chirpsMsg, newMsg]);
+		console.log(newMsg)
+	}
+
+	if(viewChirpList === true){
+		return(
+			<div>
+				<SubmitChirps userLists={userLists.id} handleAddMsg={handleAddMsg}/>
+				<div className='Background'>
+			<h3>Chirps Msgs:</h3>
+				<table>
+				 <thead>
+					 <tr>
+						 <th>Chirp Submit</th>
+						 <th>Delete</th>
+					 </tr>
+				 </thead>
+				 <tbody>
+					 {chirpMsg.map((msg) => (<MsgChirps key={uuidv4()} chirpMsg={chirpMsg} handleRemoveUser={handleRemoveUser}/>))}
+				 </tbody>
+				</table>
+		</div> 
+			</div>
+		)}
+	}
+	
+
+
+export default ChirperUsers;
+
+
+//=====
+//	====
 
 	function handleDeleteUser() {
 		fetch(`http://localhost:9292/chirper_profile/${user.id}`, {
-		  method: "DELETE",
+			method: "DELETE",
 		})
 		.then(resp => resp.json())
 		.then(deletedUser => handleRemoveUser(deletedUser.id));
 		// .then(console.log(id))
-	  }
-
-	const handleViewToggle = () => {
-		setViewChirpList(!viewChirpList)
-	}
+		}
+		//
+	// const handleViewToggle = () => {
+	// 	setViewChirpList(!viewChirpList)
+	// }
 
 	const chirpMsg = user.chirps.map((msg) => (
 		<MsgChirps 
@@ -41,11 +84,11 @@ import SubmitChirps from "./SubmitChirps";
 	const [submitMsg, setSubmitMsg] = useState({
 		chirp_message: '',
 		chirper_profile_id: ''
-})
+	})
 
-// const [submitMsg, setSubmitMsg] = useState('')
+	// const [submitMsg, setSubmitMsg] = useState('')
 
-// const [submitMsg, setSubmitMsg] = useState('')
+	// const [submitMsg, setSubmitMsg] = useState('')
 
 	const handleDeleteChirp = (id) => {
 		const updatedMsgs = chirpsMsg.filter(showChirps => showChirps.id !== id);
@@ -60,10 +103,7 @@ import SubmitChirps from "./SubmitChirps";
 		.then(deletedMsg => handleDeleteChirp(deletedMsg.id))
 	}
 
-	function handleAddMsg(newMsg) {
-		setChirpsMsg([...chirpsMsg, newMsg]);
-		console.log(newMsg)
-	}
+
 
 	// submitMsg.chirp_message, = null
 	// submitMsg, = {"chirp_message"=>"", "chirper_profile_id"=>"", ""=>"asdf"}
@@ -107,9 +147,9 @@ import SubmitChirps from "./SubmitChirps";
 	};
 
 	// ===========
-	
 
-    return (
+
+	return (
 			<div>
 			
 		<li>
@@ -126,9 +166,9 @@ import SubmitChirps from "./SubmitChirps";
 							</th>
 						</tr>
 					</thead>
-								 									
+																	
 							<th>Chirps</th>
-						 <th>{showChirps}</th>
+							<th>{showChirps}</th>
 				</table>
 			</div>
 			</div>
@@ -137,7 +177,7 @@ import SubmitChirps from "./SubmitChirps";
 			<div>
 
 					{chirpMsg}
-	
+
 				{/* <MsgChirps 
 					userLists={userLists}
 					viewChirpList={viewChirpList}
@@ -149,24 +189,23 @@ import SubmitChirps from "./SubmitChirps";
 				<button onClick={handleDeleteUser}>Delete User</button>
 				<form onSubmit={handleMsgSubmit}>  
 					
-            		<p>New Chirp</p> 
+					<p>New Chirp</p> 
 					<label className="text-input" >
-               		 <input
+						<input
 					type="text"
 					placeholder="Chirp Msg"
-                    className="tweet-box"
-                    onChange={handleChange}
+					className="tweet-box"
+					onChange={handleChange}
 					value={submitMsg.chirp_message}
-                />
+				/>
 					</label>
-				   <br></br>
-                <button className="submit-box" type="submit">Submit Msg</button>
-            </form>
+					<br></br>
+				<button className="submit-box" type="submit">Submit Msg</button>
+			</form>
 			</div>
 		</li>
 		</div>
 
-    )
-}
+	)
+	}
 
-export default ChirperUsers;
