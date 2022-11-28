@@ -43,20 +43,18 @@ import { v4 as uuidv4 } from 'uuid';
             <table className='Table, Student-header'>
              <thead>
               <tr>
-                <th>{student.first_name} {student.last_name}</th>
+                <th>{userLists.name}</th>
                 <th>
-                 <button className='Button1' onClick={handleDonateClick}>{seeDonors ? 'Hide Donors' : 'See Donors'}</button>
+                 <button className='Button1' onClick={handleViewToggle}>{viewChirpList ? 'Hide Chirps' : 'Show Donors'}</button>
                 </th>
               </tr>
              </thead>
             </table>
           </div>
-          <DonorsList student={student} seeDonors={seeDonors}/>
+          <ChirperUsers userLists={userLists} viewChirpList={viewChirpList}/>
           </div>
       </div>
     )
 };
-
-
 
 export default ChirperPage;
