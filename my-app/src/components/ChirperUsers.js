@@ -3,7 +3,7 @@ import { v4 as uuidv4} from 'uuid'
 import SubmitChirps from "./SubmitChirps";
 import MsgChirps from "./MsgChirps";
 
-function ChirperUsers({ userLists, viewChirpList }) {
+function ChirperUsers({ userLists, viewChirpList, setUserlists }) {
 	const [chirpsMsg, setChirpsMsg] = useState(userLists.chirps);
 
   function handleRemoveUser(id) {
@@ -15,6 +15,14 @@ function ChirperUsers({ userLists, viewChirpList }) {
 		setChirpsMsg([...chirpsMsg, newMsg]);
 		console.log(newMsg)
 	}
+
+	const handleDeleteUser = () => {
+		fetch(`http://localhost:9292/chirper_profile/${user.id}`, {
+				method: 'DELETE',
+		})
+			.then(resp => resp.json())
+			.then(deletedUser => handleRemoveUser(deletedUser.id));
+	  }
 
 	if(viewChirpList === true){
 		return(
@@ -36,9 +44,7 @@ function ChirperUsers({ userLists, viewChirpList }) {
 		</div> 
 			</div>
 		)}
-	}
-	
-
+}
 
 export default ChirperUsers;
 

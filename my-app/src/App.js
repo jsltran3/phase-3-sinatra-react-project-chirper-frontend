@@ -16,19 +16,19 @@ function App() {
         .then((users) => setUserlists(users));
       }, []);
 
-  const handleAddUser = (newUser) => {
-    setUserlists(newUser)
+  const handleUserSubmit = (user) => {
+    setUserlists(user)
   }
 
   const allUsers = userLists.map((users) => (
-    <ChirperPage userLists={userLists} key={uuidv4()} />
+    <ChirperPage userLists={userLists} setUserlists={setUserlists} key={uuidv4()} />
   ))
 
 
   return (
     <div className="App">
       <Header />
-      <ChirperUserForm handleAddUser={handleAddUser} />
+      <ChirperUserForm handleAddUser={handleUserSubmit} />
       {allUsers}
     </div>
   );

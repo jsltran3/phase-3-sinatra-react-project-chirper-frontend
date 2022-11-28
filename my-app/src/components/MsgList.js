@@ -1,74 +1,40 @@
 import React, { useState } from "react";
+import { v4 as uuidv4} from 'uuid'
+import SubmitChirps from "./SubmitChirps";
+import MsgChirps from "./MsgChirps";
 
-function MsgList ({chirpsMsg, msg, setChirpsMsg, handleDeleteChirp}) {
+function MsgList({ userLists, viewChirpList }) {
+	const [chirpsMsg, setChirpsMsg] = useState(userLists.chirps);
 
-//   const handleDelete = () => {
-//     fetch(`http://localhost:9292/donors/${donor.id}`, {
-//       method: 'DELETE',
-//     })
-//     .then(r => r.json())
-//     .then(deletedDonor => onDeleteDonor(deletedDonor.id))
-//   }
-
-  const handleMsgDelete = () => {
-    fetch(`http://localhost:9292/chirp/${msg.id}`, {
-      method: 'DELETE',
-    })
-    .then(r => r.json())
-    .then(deletedMsg => handleDeleteChirp(deletedMsg.id))
-  }
+  const onDeleteMsg = (id) => {
+		const updatedMsgs = chirpsMsg.filter(showChirps => showChirps.id !== id);
+		setChirpsMsg(updatedMsgs);
+	}
 
   function handleAddMsg(newMsg) {
     setChirpsMsg([...chirpsMsg, newMsg]);
   }
 
-//   const handleClick = () => {
-//     fetch(`http://localhost:9292/donors/${donor.id}`, {
-//       method: 'PATCH',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         "donation_received": !isDonate
-//       })
-//     })
-//     .then(r => r.json())
-//     .then(data => setIsDonate(data.donation_received))
-//   }
-
-  const handleEditClick = () => {
-    fetch(`http://localhost:9292/chirp/${msg.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "Tweet": !chirpsMsg
-      })
-    })
-    .then(resp => resp.json())
-    .then(data => setChirpsMsg(data.chirp_message))
-  }
-
-  
-
-  return(
-    
-      <tr>
-        <td>{chirpsMsg.chirp_message}</td>
-
-        <td>
-          <button onClick={handleEditClick}>Edit</button>
-        </td>
-        <td>
-          <button className='Delete-button' onClick={handleMsgDelete} id={msg.id}>Delete</button>
-          <button onClick={handleEditClick}>Edit</button> 
-            <button onClick={handleMsgDelete}>Delete Message</button>
-        </td>
-       </tr>
-  )
-}
+	if(viewChirpList === true){
+		return(
+			<div>
+				<SubmitChirps userLists={userLists.id} handleAddMsg={handleAddMsg}/>
+				<div className='Background'>
+			<h3>Chirps Msgs:</h3>
+				<table>
+				 <thead>
+					 <tr>
+						 <th>Chirp Submit</th>
+						 <th>Delete</th>
+					 </tr>
+				 </thead>
+				 <tbody>
+					 {chirpsMsg.map((msg) => (<MsgChirps key={uuidv4()} chirpMsg={chirpsMsg} onDeleteMsg={onDeleteMsg}/>))}
+				 </tbody>
+				</table>
+		</div> 
+			</div>
+		)}
+	}
 
 export default MsgList;
