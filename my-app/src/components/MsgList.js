@@ -3,7 +3,7 @@ import { v4 as uuidv4} from 'uuid'
 import SubmitChirps from "./SubmitChirps";
 import MsgChirps from "./MsgChirps";
 
-function MsgList({ users, viewChirpList, id }) {
+function MsgList({ users, viewChirpList }) {
 	const [chirpsMsg, setChirpsMsg] = useState(users.chirps);
 
   console.log(users.chirps)
@@ -25,9 +25,9 @@ function MsgList({ users, viewChirpList, id }) {
 		return(
 			<div>
 				<SubmitChirps 
-          userLists={users}
+          users={users}
           handleAddMsg={handleAddMsg}
-          id={id}
+        
         />
 				<div className='Background'>
 			<h3>Chirps Msgs:</h3>

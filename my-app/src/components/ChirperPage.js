@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import MsgList from "./MsgList";
 
 
-function ChirperPage ({users, mainChirps, id}){
+function ChirperPage ({users, mainChirps}){
 
   // console.log(users)
 
   
   return(
     <div>
-        <div className="User-pad" key={id}>
+        <div className="User-pad" key={users.id}>
          <div>
           <table className='Table, User-header'>
            <thead>
@@ -22,7 +22,7 @@ function ChirperPage ({users, mainChirps, id}){
            </thead>
           </table>
         </div>
-        <MsgList users={users} id={id} />
+        <MsgList users={users} />
         </div>
     </div>
   )

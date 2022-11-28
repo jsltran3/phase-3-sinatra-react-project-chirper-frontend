@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-function SubmitChirps ({userListsId, userLists, id, handleAddMsg}){
+function SubmitChirps ({userListsId, userLists, users, handleAddMsg}){
   const [submitMsg, setSubmitMsg] = useState({
     chirp_message: '',
-    chirper_profile_id: id,
-    Like: false,
+    chirper_profile_id: users.id,
+    like: false,
   })
 	
 
@@ -15,7 +15,7 @@ function SubmitChirps ({userListsId, userLists, id, handleAddMsg}){
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 		console.log(submitMsg)
     fetch('http://localhost:9292/chirp', {
       method: 'POST',
@@ -30,7 +30,7 @@ function SubmitChirps ({userListsId, userLists, id, handleAddMsg}){
       handleAddMsg(chirp);
       setSubmitMsg({
         chirper_message: '',
-        Like: false
+        like: false
       })
     })
     

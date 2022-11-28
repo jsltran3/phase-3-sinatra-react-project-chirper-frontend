@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 
 function MsgChirps({ msg, onDeleteMsg }) {
-  const [isLike, setIsLike] = useState(msg.Like)
+  const [isLike, setIsLike] = useState(msg.like)
   console.log(msg, "i'm in msg chirps")
     const handleMsgDelete = () => {
       fetch(`http://localhost:9292/chirp/${msg.id}`, {
@@ -12,7 +12,6 @@ function MsgChirps({ msg, onDeleteMsg }) {
       .then(deletedMsg => onDeleteMsg(deletedMsg.id))
     }
 
-    //have to migrate and seed 
     const handleEditClick = () => {
       fetch(`http://localhost:9292/chirp/${msg.id}`, {
         method: 'PATCH',
@@ -21,11 +20,11 @@ function MsgChirps({ msg, onDeleteMsg }) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          "Like": !isLike
+          "like": !isLike
         })
       })
       .then(resp => resp.json())
-      .then(data => setIsLike(data.Like))
+      .then(data => setIsLike(data.like))
     }
     return(
     
