@@ -32,18 +32,22 @@ import SubmitChirps from "./SubmitChirps";
 
 	//show chirps
 	const showChirps = user.chirps.map(msg => msg.chirp_message)
-	
-	console.log(showChirps)
+	const showChirpKey = user.chirps.map(msg => msg.chirper_profile_id)
+	// console.log(showChirps)
 	// const chirpMsg = chirps.map((msg) => (
 	// 	<MsgChirps key={msg.id} id={msg.id} msg={msg}/>))
 
 	// ===========
-	const [chirpsMsg, setChirpsMsg] = useState(showChirps.chirp_message);
-	const [submitMsg, setSubmitMsg] = useState({
-		chirp_message: '',
-		chirper_profile_id: user
-})
+	const [chirpsMsg, setChirpsMsg] = useState(showChirpKey);
+// 	const [submitMsg, setSubmitMsg] = useState({
+// 		chirp_message: '',
+// 		chirper_profile_id: user
+// })
 
+const [submitMsg, setSubmitMsg] = useState('')
+
+
+console.log(user.chirps.map(msg => msg.chirper_profile_id))
 // const [submitMsg, setSubmitMsg] = useState('')
 
 	const handleDeleteChirp = (id) => {
@@ -61,8 +65,10 @@ import SubmitChirps from "./SubmitChirps";
 
 	function handleAddMsg(newMsg) {
 		setChirpsMsg([...chirpsMsg, newMsg]);
+		console.log(newMsg)
 	}
 
+	
 	const handleMsgSubmit = (event) => {
 		event.preventDefault();
 		fetch('http://localhost:9292/chirp', {
@@ -71,18 +77,23 @@ import SubmitChirps from "./SubmitChirps";
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({submitMsg})
+			body: JSON.stringify({
+				chirp_message: user.chirp_message,
+				chirper_profile_id: user
+
+			}),
 		})
 		.then(resp => resp.json())
 		.then(message => {
 			handleAddMsg(message);
-			console.log(message, "eh?")
+			setSubmitMsg({chirp_message: ''})
+			// console.log(message, "eh?")
 		})
 	}
 
-	function handleAddMsg(newMsg) {
-		setChirpsMsg([...chirpsMsg, newMsg]);
-	}
+	// function handleAddMsg(newMsg) {
+	// 	setChirpsMsg([...chirpsMsg, newMsg]);
+	// }
 
 	const handleChange = (event) => {
 		setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
@@ -107,13 +118,15 @@ import SubmitChirps from "./SubmitChirps";
 								{/* <button className='Button1' onClick={handleViewToggle}>{viewChirpList ? 'Hide user' : 'View User'}</button> */}
 							</th>
 						</tr>
-						<thead>						
-							<th>Chirps</th>
-							<th>{showChirps}</th>
+
+				
+		
 					
-							</thead>
 
 					</thead>
+								 									
+							<th>Chirps</th>
+						 <th>{showChirps}</th>
 				</table>
 			</div>
 			</div>
@@ -127,7 +140,7 @@ import SubmitChirps from "./SubmitChirps";
 					userLists={userLists}
 					viewChirpList={viewChirpList}
 				/> */}
-				{chirpMsg}
+				{/* {chirpMsg} */}
 				{/* {showChirps.chirp_message}
 				{showChirps.chirp_message} */}
 				{/* whats happening is that its auto called */}
@@ -141,7 +154,7 @@ import SubmitChirps from "./SubmitChirps";
                     className="tweet-box"
                     // id="tweet"
                     // name="tweet"
-                    value={showChirps.chirp_message}
+                    value={submitMsg.chirp_message}
                     onChange={handleChange}
                 />
                 </label>
