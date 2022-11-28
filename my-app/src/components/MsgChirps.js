@@ -35,7 +35,7 @@ function MsgChirps({ chirpsMsg, onDeleteMsg }) {
           <button className={isLike ? "Button2" : "Button3"} onClick={handleEditClick}>{isLike ? "Yay" : "Nay"}</button>
         </td>
         <td>
-          <button className='Delete-button' onClick={handleMsgDelete} id={chirpsMsg.chirper_profile_id}>Delete</button>
+          <button className='Delete-button' onClick={handleMsgDelete} id={chirpsMsg.id}>X</button>
         </td>
        </tr>
   )
