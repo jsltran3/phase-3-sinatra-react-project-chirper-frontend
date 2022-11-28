@@ -21,7 +21,7 @@ h2 {
   font-size: 16px;
 }
 
-.Form-donate {
+.Form-submission {
   padding-top: 0px;
   padding-bottom: 0px;
   text-align: center;
@@ -61,7 +61,7 @@ table {
   width: inherit;
 }
 
-.Student-header {
+.User-header {
   background-color: #282c34;
   color: #61dafb;
   margin: auto;
@@ -69,7 +69,7 @@ table {
   text-align: center;
 }
 
-.Student-pad {
+.User-pad {
   background-color: white;
   padding: 20px;
   padding-left: 60px;

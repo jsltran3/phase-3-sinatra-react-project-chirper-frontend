@@ -9,9 +9,9 @@ function ChirperPage ({userLists, name, id}){
   
   return(
     <div>
-        <div className="Student-pad" key={id}>
+        <div className="User-pad" key={id}>
          <div>
-          <table className='Table, Student-header'>
+          <table className='Table, User-header'>
            <thead>
             <tr>
               <th>{name}</th>
