@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import ChirperPage from './components/ChirperPage.js';
-import ChirperForm from "./ChirperForm";
-import ChirperUsers from "./ChirperUsers";
+import ChirperUserForm from "./ChirperUserForm";
 import { v4 as uuidv4 } from 'uuid';
 import Header from "./Header";
 
@@ -29,17 +28,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-        <p>
-          Project 3: Chirper
-        </p>
-        <h3>
-          <ChirperPage 
-            userLists={userLists}
-            setUserlists={setUserlists}
-            handleAddUser={handleAddUser}
-          />
-        </h3>
-        {allUsers}
+      <ChirperUserForm handleAddUser={handleAddUser} />
+      {allUsers}
     </div>
   );
 }
