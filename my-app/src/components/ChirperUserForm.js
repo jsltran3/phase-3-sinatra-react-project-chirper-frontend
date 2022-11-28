@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
-function ChirperUserForm ({handleStudSubmit}){
+function ChirperUserForm ({handleAddUser}){
 	const  [formInput, setFormInput] = useState({name: ''});
+	const [newUser, setNewUser] = useState([]);
 
   
 	function handleFormInputChange(event) {
 		setFormInput({...formInput,[event.target.name]: event.target.value});
 	};
-   
+  
+  const handleAddUser = (newUser) => {
+    setUserlists(newUser)
+  }
+
 	function handleAddSubmit(event) {
 		event.preventDefault();
 		
@@ -21,7 +26,7 @@ function ChirperUserForm ({handleStudSubmit}){
 		})
 			.then((resp) => resp.json())
 			.then(user => {
-				onAddUser(user);
+				handleAddUser(user);
 				setFormInput({
 					name: ''
 				})
