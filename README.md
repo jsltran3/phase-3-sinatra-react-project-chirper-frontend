@@ -6,3 +6,6 @@ Everyone's heard of the issues surrounding Twitter. The exodus from Twitter duri
 # Functionality 
 1. Fill in form to create users and submit
 2. To create a "chirp", fill in the input form with your post and voila! You have a chirp for the world to see. 
+
+Link to backend:
+https://github.com/jsltran3/phase-3-sinatra-react-project-chirper
