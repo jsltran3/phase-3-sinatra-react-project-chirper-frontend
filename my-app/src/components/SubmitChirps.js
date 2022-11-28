@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import DonorsList from "./DonorsList";
 import MsgList from './MsgList';
 
-function DonateForm ({student , handleDonorSubmit}){
-  const [donorForm, setDonorForm] = useState({
-    first_name: '',
-    last_name: '',
-    donation: '',
-    donation_received: false,
-    student_id: student
+function SubmitChirps ({userLists , handleAddMsg}){
+  const [submitMsg, setSubmitMsg] = useState({
+    chirp_message: '',
+    chirper_profile_id: userLists,
+    Like: false,
   })
  
-  const handleChange = (e) => {
-    setDonorForm({...donorForm, [e.target.name]: e.target.value})
-  };
-
-  const handleIntChange = (e) => {
-    setDonorForm({...donorForm, [e.target.name]: parseFloat(e.target.value)})
-  };
+  const handleChange = (event) => {
+    setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +40,6 @@ function DonateForm ({student , handleDonorSubmit}){
         <form className='Form-donate' onSubmit={handleSubmit}>
           <input type="text" placeholder="First Name" value={donorForm.first_name} name="first_name" onChange={handleChange} required/>
           <input  type="text" placeholder="Last Name"value={donorForm.last_name} name="last_name" onChange={handleChange} required/>
-          <input  type="number" placeholder="Donation Amount" value={donorForm.donation} name="donation" onChange={handleIntChange} required/>
           <button className='Form-button'>Submit Donation</button>
         </form>
     </div>
@@ -77,28 +69,49 @@ function SubmitChirps({ msg, userLists, onAddMsg }) {
         setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
     };
 
-    const handleMsgSubmit = (event) => {
-			event.preventDefault();
-			fetch('http://localhost:9292/chirp', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(submitMsg)
-			})
-			.then(resp => resp.json())
-			.then(message => {
-				onAddMsg(message);
-				setSubmitMsg({
-					chirp_message: ''
-				})
-			})
-			
-		}
-		console.log("where's my submit form??")
+	function handleMsgSubmit() {
+		// event.preventDefault();
+		const inputMsgDb = ({
+			chirp_message: showChirps,
+			chirper_profile_id: user.id
+		})
 
-    return (
+		fetch('http://localhost:9292/chirp', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			// body: JSON.stringify({
+			// 	"chirp_message": 'submitMsg',
+			// 	"chirper_profile_id": user.id
+
+			// }),
+			body: JSON.stringify(inputMsgDb),
+		})
+		.then(resp => resp.json())
+		.then(message => {
+			handleAddMsg(message);
+			setSubmitMsg({
+				chirp_message: '', 
+				chirper_profile_id: ''
+			})
+		})
+	}
+    return(
+        <div>
+            <form className='Form-donate' onSubmit={handleSubmit}>
+                <input type="text" placeholder='Your Chirp...' value={submitMsg.chirp_message} name="first_name" onChange={handleChange} required/>
+                <button className='Form-button'>Submit Chirp</button>
+            </form>
+        </div>
+        )
+
+    }
+    
+export default SubmitChirps; 
+	==========
+		return (
         <div>
           {/* <form onSubmit = {handleAddSubmit}>  */}
 					<form onSubmit={handleMsgSubmit}>  
@@ -120,4 +133,3 @@ function SubmitChirps({ msg, userLists, onAddMsg }) {
     )
 }
 
-export default SubmitChirps; 
