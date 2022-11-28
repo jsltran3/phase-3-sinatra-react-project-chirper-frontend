@@ -21,8 +21,8 @@ function App() {
 
 
 
-  const handleUserSubmit = (stud) => {
-    setUserlists(stud)
+  const handleUserSubmit = (user) => {
+    setUserlists(user)
   }
 
   
@@ -31,7 +31,7 @@ function App() {
     <ChirperPage userLists={userLists} name={users.name} id={users.id} />
   ))
 
-    console.log(userLists)
+    // console.log(userLists)
   return (
     <div>
       <Header />

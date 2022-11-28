@@ -5,7 +5,6 @@ import MsgList from "./MsgList";
 function ChirperPage ({userLists, name, id}){
 
 
-  // const showAllChirps = userLists.chirps.map(msg => msg.chirp_message)
   
   return(
     <div>

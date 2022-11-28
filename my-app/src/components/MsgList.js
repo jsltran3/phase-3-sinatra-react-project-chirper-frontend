@@ -15,7 +15,11 @@ function MsgList({ userLists, viewChirpList }) {
     setChirpsMsg([...chirpsMsg, newMsg]);
   }
 
+  console.log(userLists.id)
+  // const showAllChirps = chirpsMsg.chirps.map(msgs => msgs.chirp_messages)
 
+  // console.log(showAllChirps)
+  // console.log(userLists)
 		return(
 			<div>
 				<SubmitChirps 
@@ -32,7 +36,7 @@ function MsgList({ userLists, viewChirpList }) {
 					 </tr>
 				 </thead>
 				 <tbody>
-					 {/* {showAllChirps.map((msg) => (<MsgChirps key={msg.id} chirpMsg={chirpsMsg} onDeleteMsg={onDeleteMsg}/>))} */}
+					 {/* {chirpsMsg.map((msg) => (<MsgChirps key={} chirpMsg={chirpsMsg} onDeleteMsg={onDeleteMsg}/>))} */}
 				 </tbody>
 				</table>
 		</div> 
