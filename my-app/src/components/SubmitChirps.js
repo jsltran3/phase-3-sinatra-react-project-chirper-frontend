@@ -9,12 +9,8 @@ function SubmitChirps ({ user, handleAddMsg}){
 	
 
   const handleChange = (event) => {
-		// console.log(event.target.value)
     setSubmitMsg({...submitMsg, [event.target.name]: event.target.value})
 };
-
-
-  //fix this to make controlled form
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -14,26 +14,17 @@ function App() {
         .then((users) => setUserlists(users))
       },[]);
 
-  // const handleUserSubmit = (user) => {
-  //   setUserlists(user)
-  // }
-
-    // console.log(userLists)
-
-
   const handleUserSubmit = (user) => {
     setUserlists(user)
   }
 
   function handleDeleteUser(id) {
-    // debugger
 		const updatedUseres = userLists.filter(updatedList => updatedList.id !== id);
 		setUserlists(updatedUseres);
 	}
 
   const showUsers = userLists.map((user) => (
-    // console.log(users.chirps)
-    <ChirperPage user={user} setUserlists={setUserlists} handleDeleteUser={handleDeleteUser} />
+    <ChirperPage key={user.id} user={user} setUserlists={setUserlists} handleDeleteUser={handleDeleteUser} />
   ))
 
   return (

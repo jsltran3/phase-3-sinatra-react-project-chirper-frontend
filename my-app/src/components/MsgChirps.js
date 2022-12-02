@@ -4,7 +4,7 @@ import React, { useState } from "react";
 function MsgChirps({ msg, onDeleteMsg }) {
   const [isLike, setIsLike] = useState(msg.like)
   
-  // const {chirp_message, id} = msg
+  const {chirp_message, id} = msg
 
     const handleMsgDelete = () => {
       fetch(`http://localhost:9292/chirp/${msg.id}`, {
@@ -31,8 +31,8 @@ function MsgChirps({ msg, onDeleteMsg }) {
 
     return(
     
-      <tr key={msg.id}>
-        <td>{msg.chirp_message}</td>
+      <tr key={id}>
+        <td>{chirp_message}</td>
         <td className ='hoverbox'>
           <button className={isLike ? "Button2" : "Button3"} onClick={handleEditClick}>{isLike ? "♡" : "❤ "}</button>
         </td>

@@ -16,8 +16,8 @@ function MsgList({ user }) {
 	return(
 		<div>
 			<SubmitChirps 
-			user={user}
-			handleAddMsg={handleAddMsg}
+				user={user}
+				handleAddMsg={handleAddMsg}
 			/>
 		<div className='Background'>
 			<h3>Chirps Msgs:</h3>
@@ -30,7 +30,7 @@ function MsgList({ user }) {
 						</tr>
 					</thead>
 					<tbody>
-						{chirpsMsg.map((msg) => (<MsgChirps msg={msg} onDeleteMsg={onDeleteMsg}/>))}
+						{chirpsMsg.map((msg) => (<MsgChirps msg={msg} key={msg.id} onDeleteMsg={onDeleteMsg}/>))}
 					</tbody>
 				</table>
 		</div> 
