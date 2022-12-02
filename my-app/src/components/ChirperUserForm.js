@@ -28,12 +28,12 @@ function ChirperUserForm ({ handleUserSubmit }){
     })
     
   }
-
+  
   return(
     <div>
  	   <h2>Add new Chirper User</h2>
       <form className='Form' onSubmit={handleSubmit}>
-        <input type="text" placeholder="User Name" name="name" onChange={handleChange} required/>
+        <input type='text' placeholder='User Name' name='name' value={newUser.name} onChange={handleChange} required/>
         <button className='Form-button'>Create User</button>
       </form>
     </div>

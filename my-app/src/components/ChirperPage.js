@@ -1,28 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import MsgList from "./MsgList";
 
 
-function ChirperPage ({users, mainChirps}){
+function ChirperPage ({user, handleDeleteUser }){
 
-  // console.log(users)
+  function handleUserDelete() {
+    fetch(`http://localhost:9292/chirper_profile/${user.id}`, {
+      method: 'DELETE',
+    })
+    .then(r => r.json())
+    .then(deletedUser => handleDeleteUser(deletedUser.id))
+  }
 
-  
   return(
     <div>
-        <div className="User-pad" key={users.id}>
+        <div className="User-pad" key={user.id}>
          <div>
           <table className='Table, User-header'>
            <thead>
             <tr>
-              <th>{users.name}</th>
-              <th>
-                {/* <button className='Button1' onClick={handleViewToggle}>{viewChirpList ? 'Hide Chirps' : 'Show Chirps'}</button> */}
-              </th>
+              <th>{user.name}</th>
             </tr>
            </thead>
           </table>
+          <button className='Delete-button' onClick={handleUserDelete} id={user.id}>DEL</button>
+
         </div>
-        <MsgList users={users} />
+        <MsgList user={user} />
         </div>
     </div>
   )

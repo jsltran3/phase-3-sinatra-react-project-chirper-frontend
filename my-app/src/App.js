@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './index.css';
 import ChirperUserForm from './components/ChirperUserForm';
 import ChirperPage from './components/ChirperPage';
-import { v4 as uuidv4 } from 'uuid';
 import Header from './components/Header';
 import './App.css';
 
@@ -19,18 +18,22 @@ function App() {
   //   setUserlists(user)
   // }
 
-    console.log(userLists)
+    // console.log(userLists)
 
 
   const handleUserSubmit = (user) => {
     setUserlists(user)
   }
 
-  
+  function handleDeleteUser(id) {
+    // debugger
+		const updatedUseres = userLists.filter(updatedList => updatedList.id !== id);
+		setUserlists(updatedUseres);
+	}
 
-  const showUsers = userLists.map((users) => (
+  const showUsers = userLists.map((user) => (
     // console.log(users.chirps)
-    <ChirperPage users={users} />
+    <ChirperPage user={user} setUserlists={setUserlists} handleDeleteUser={handleDeleteUser} />
   ))
 
   return (

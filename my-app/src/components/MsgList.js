@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { v4 as uuidv4} from 'uuid'
-import SubmitChirps from "./SubmitChirps";
-import MsgChirps from "./MsgChirps";
+import SubmitChirps from './SubmitChirps';
+import MsgChirps from './MsgChirps';
 
-function MsgList({ users, viewChirpList }) {
-	const [chirpsMsg, setChirpsMsg] = useState(users.chirps);
-
-  console.log(users.chirps)
-
+function MsgList({ user }) {
+	const [chirpsMsg, setChirpsMsg] = useState(user.chirps);
 
   const onDeleteMsg = (id) => {
 		const updatedMsgs = chirpsMsg.filter(showChirps => showChirps.id !== id);
@@ -17,38 +13,30 @@ function MsgList({ users, viewChirpList }) {
   function handleAddMsg(newMsg) {
     setChirpsMsg([...chirpsMsg, newMsg]);
   }
-  // console.log(userLists)
-  // const showAllChirps = chirpsMsg.chirps.map(msgs => msgs.chirp_messages)
-
-  // console.log(showAllChirps)
-  // const showAllId = 
-		return(
-			<div>
-				<SubmitChirps 
-          users={users}
-          handleAddMsg={handleAddMsg}
-        
-        />
-				<div className='Background'>
+	return(
+		<div>
+			<SubmitChirps 
+			user={user}
+			handleAddMsg={handleAddMsg}
+			/>
+		<div className='Background'>
 			<h3>Chirps Msgs:</h3>
 				<table>
-				 <thead>
-					 <tr>
-						 <th>Chirp List</th>
-             <th>Like?</th>
-						 <th>Delete</th>
-					 </tr>
-				 </thead>
-				 <tbody>
-					 {chirpsMsg.map((msg) => (<MsgChirps msg={msg} onDeleteMsg={onDeleteMsg}/>))}
-           {/* {chirpsMsg.map((msg) => console.log(msg))} */}
-
-				 </tbody>
+					<thead>
+						<tr>
+							<th>Chirp List</th>
+							<th>Reaction</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{chirpsMsg.map((msg) => (<MsgChirps msg={msg} onDeleteMsg={onDeleteMsg}/>))}
+					</tbody>
 				</table>
 		</div> 
-			</div>
-		)
-	}
+		</div>
+	)
+}
 
 export default MsgList;
 

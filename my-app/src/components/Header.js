@@ -5,7 +5,7 @@ function Header() {
   
   return (
     <div className='Header'>
-      <h1>Project 3: Chirper</h1>
+      <h1>Phase 3 Project: Chirper</h1>
     </div>
   );
 }

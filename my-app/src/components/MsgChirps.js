@@ -3,7 +3,9 @@ import React, { useState } from "react";
 
 function MsgChirps({ msg, onDeleteMsg }) {
   const [isLike, setIsLike] = useState(msg.like)
-  console.log(msg, "i'm in msg chirps")
+  
+  // const {chirp_message, id} = msg
+
     const handleMsgDelete = () => {
       fetch(`http://localhost:9292/chirp/${msg.id}`, {
         method: 'DELETE',
@@ -20,21 +22,23 @@ function MsgChirps({ msg, onDeleteMsg }) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          "like": !isLike
+          'like': !isLike
         })
       })
       .then(resp => resp.json())
       .then(data => setIsLike(data.like))
     }
+
     return(
     
-      <tr>
+      <tr key={msg.id}>
         <td>{msg.chirp_message}</td>
-        <td>
-          <button className={isLike ? "Button2" : "Button3"} onClick={handleEditClick}>{isLike ? "Yay" : "Nay"}</button>
+        <td className ='hoverbox'>
+          <button className={isLike ? "Button2" : "Button3"} onClick={handleEditClick}>{isLike ? "♡" : "❤ "}</button>
         </td>
+        
         <td>
-          <button className='Delete-button' onClick={handleMsgDelete} id={msg.id}>X</button>
+          <button className='Delete-button' onClick={handleMsgDelete} id={msg.id}>DEL</button>
         </td>
        </tr>
   )
