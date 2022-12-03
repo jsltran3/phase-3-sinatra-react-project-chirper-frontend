@@ -14,8 +14,6 @@ function SubmitChirps ({ user, handleAddMsg}){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-		// console.log(submitMsg)
-    // debugger
     fetch('http://localhost:9292/chirp', {
       method: 'POST',
       headers: {
@@ -39,7 +37,7 @@ function SubmitChirps ({ user, handleAddMsg}){
     <div>
         <form className='Form-submission' onSubmit={handleSubmit}>
           <input 
-            type='text' 
+            type='chirp_message' 
             placeholder='Chirp' 
             name='chirp_message' 
             value={submitMsg.chirp_message} 
