@@ -6,3 +6,12 @@ Everyone's heard of the issues surrounding Twitter. The exodus from Twitter duri
 # Functionality 
 1. Fill in form to create users and submit
 2. To create a "chirp", fill in the input form with your post and voila! You have a chirp for the world to see. 
+3. You can like or nay the message by clicking on the yay/nay button
+4. Clicking on the "X" will delete the message
+
+# To start
+1. run npm install
+2. run npm start
+
+Link to backend:
+https://github.com/jsltran3/phase-3-sinatra-react-project-chirper
