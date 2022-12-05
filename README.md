@@ -13,7 +13,7 @@ Everyone's heard of the issues surrounding Twitter. The exodus from Twitter duri
 1. run npm install
 2. run npm start
 
-Link to backend:
+# Link to backend:
 https://github.com/jsltran3/phase-3-sinatra-react-project-chirper
 
 # Goals
